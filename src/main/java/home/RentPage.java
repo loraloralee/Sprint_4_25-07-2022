@@ -1,5 +1,5 @@
 package home;
-
+import home.data.Rent;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -22,11 +22,11 @@ public class RentPage {
         this.driver = driver;
     }
 
-    public void fillRentPage(String date,String period,String color,String comment){
-        fillDate(date);
-        fillPeriod(period);
-        fillColor(color);
-        fillComment(comment);
+    public void fillRentPage(Rent rent){
+        fillDate(rent.getDate());
+        fillPeriod(rent.getPeriod());
+        fillColor(rent.getColor());
+        fillComment(rent.getComment());
     }
     public void fillDate (String date){
         driver.findElement(inputDate).click();

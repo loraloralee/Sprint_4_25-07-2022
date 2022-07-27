@@ -1,9 +1,10 @@
 package home;
 
+import home.data.Order;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 public class OrderPage {
-    private final WebDriver driver;
+    private final WebDriver driver ;
     private final By inputName = By.xpath(".//input[@placeholder='* Имя']");
     private final By inputSurname = By.xpath(".//input[@placeholder='* Фамилия']");
     private final By inputAddress = By.xpath(".//input[@placeholder='* Адрес: куда привезти заказ']");
@@ -18,13 +19,14 @@ public class OrderPage {
 
         this.driver = driver;
     }
-    public void fillOrderForm(String name,String surname,String address, String station,String phone ){
-        fillName(name);
-        fillSurname(surname);
-        fillAddress(address);
-        fillStation(station);
-        fillPhone(phone);
+    public void fillOrderForm(Order order){
+        fillName(order.getName());
+        fillSurname(order.getSurname());
+        fillAddress(order.getAddress());
+        fillStation(order.getStation());
+        fillPhone(order.getPhone());
     }
+
     private void fillName(String name) {
         driver.findElement(inputName).sendKeys(name);
     }
@@ -45,4 +47,5 @@ public class OrderPage {
     public void clickButtonNext() {
         driver.findElement(buttonNext).click();
     }
+
 }

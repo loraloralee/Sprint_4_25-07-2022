@@ -1,6 +1,8 @@
 package test;
 
 import home.*;
+import home.data.Order;
+import home.data.Rent;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Before;
 import org.junit.After;
@@ -56,6 +58,7 @@ public class CheckOrderTest {
         driver.get(HomePage.URL);*/
         WebDriverManager.firefoxdriver().setup();
         driver = new FirefoxDriver();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         driver.get(HomePage.URL);
     }
 
@@ -70,11 +73,13 @@ public class CheckOrderTest {
         homePage.clickOrderSmallButton();
 
         OrderPage orderPage=new OrderPage(driver);
-        orderPage.fillOrderForm(name,surname,address,station,phone);
+        Order order=new Order(name,surname,address,station,phone );
+        orderPage.fillOrderForm(order);
         orderPage.clickButtonNext();
 
         RentPage rentPage=new RentPage(driver);
-        rentPage.fillRentPage(date,period,color,comment);
+        Rent rent=new Rent(date,period,color,comment);
+        rentPage.fillRentPage(rent);
         rentPage.clickButtonOrder();
         rentPage.clickButtonOrderYes();
         String orderCompleted="Заказ оформлен";
@@ -88,11 +93,13 @@ public class CheckOrderTest {
         homePage.clickOrderBigButton();
 
         OrderPage orderPage=new OrderPage(driver);
-        orderPage.fillOrderForm(name,surname,address,station,phone);
+        Order order=new Order(name,surname,address,station,phone );
+        orderPage.fillOrderForm(order);
         orderPage.clickButtonNext();
 
         RentPage rentPage=new RentPage(driver);
-        rentPage.fillRentPage(date,period,color,comment);
+        Rent rent=new Rent(date,period,color,comment);
+        rentPage.fillRentPage(rent);
         rentPage.clickButtonOrder();
         rentPage.clickButtonOrderYes();
         String orderCompleted="Заказ оформлен";
