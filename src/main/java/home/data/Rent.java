@@ -26,3 +26,5 @@ public class Rent {
         this.comment = comment;
     }
 }
+
+
